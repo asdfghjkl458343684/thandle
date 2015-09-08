@@ -11,21 +11,20 @@
 		<div id="content">
 			<div id="data-section">
 				<table class="data-table1" cellspacing="0" cellpadding="0" border="1" bordercolor="#DBE2E7">
-					<caption>商品数据</caption>
+					<caption>Smart replenishment</caption>
 					<tr>
-						<th>排名</th>
-						<th>款号</th>
-						<th>品名</th>
-						<th>颜色</th>
-						<th>尺码</th>
-						<th>上周销量</th>
-						<th>库存数量</th>
-						<th>总部库存</th>
-						<th>下周预测销量</th>
-						<th>安全库存</th>
-						<th>图片</th>
-						<th>补货建议</th>
-						<th>新增任务</th>
+						<th>No</th>
+						<th>Code</th>
+						<th>Name</th>
+						<th>Color</th>
+						<th>Size</th>
+						<th>Last week's sales</th>
+						<th>Inventory</th>
+						<th>Headquarters inventory</th>
+						<th>Forecast sales next week</th>
+						<th>Safety stock</th>
+						<th>Image</th>
+						<th>Replenishment proposal</th>
 					</tr>
 				</table>
 			</div>
@@ -35,12 +34,12 @@
 		<script type="text/javascript" src="jquery-1.11.0.js"></script>
 		<script type="text/javascript">
 			var j = [
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '黑',x: true}, 'S', 2, 1, 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>'],
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '黑',x: true}, 'M', 1, '', 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>'],
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '黑',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>'], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '白',x: true}, 'S', 3, '', 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>'], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '白',x: true}, 'M', 2, '', 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>'], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: '男士外套',x: true}, {val: '白',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="http://c.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=eb79601e7fec54e755e1124cd851f035/574e9258d109b3de56c40948c8bf6c81800a4c93.jpg" />',x: true},7, '<a class="table-button add-btn" target="_self" href="../mytask/新增任务.html"></a>']
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'S', 2, 1, 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7],
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'M', 1, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7],
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'S', 3, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'M', 2, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
+						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7]
 					];
 			var n = thandle.format(j);
 			var trs = "";

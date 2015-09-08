@@ -1,0 +1,44 @@
+#content {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	padding: 3px 3px 0 5px;
+}
+#content #data-section {
+	margin-top: 10px;
+	background: #ffffff;
+}
+#content #data-section table {
+	border-collapse: collapse;
+	width:100%;
+}
+#content #data-section table caption {
+	line-height: 30px;
+	text-align: left;
+	margin-left: 20px;
+	font-weight: bolder;
+}
+#content table tr th {
+	background: #ACC7DD;
+	height: 27px;
+	line-height: 27px;
+	text-align: center;
+}
+#content #data-section table td {
+	height: 27px;
+	line-height: 27px;
+	text-align: center;
+	font-family: cursive;
+	font-family: inherit \9;
+}
+#content #data-section .data-table2 {
+	width: 800px;
+	margin-top: 20px;
+}
+#content table td img {
+	height: 27px;
+	line-height: 27px;
+}

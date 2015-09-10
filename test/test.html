@@ -34,18 +34,19 @@
 		<script type="text/javascript" src="jquery-1.11.0.js"></script>
 		<script type="text/javascript">
 			var j = [
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'S', 2, 1, 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7],
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'M', 1, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7],
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'black',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'S', 3, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'M', 2, '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7], 
-						[{val: 1,x: true}, {val: 'A1201111',x: true}, {val: 'Men\'s jacket',x: true}, {val: 'white',x: true}, 'L', '', '', 20, 3, 5, {val: '<img src="img/1.png" />',x: true},7]
+						['1', 'A1201111', 'Men\'s jacket', 'black', 'S', 2, 1, 20, 3, 5, '<img src="img/1.png" />',7],
+						['1', 'A1201111', 'Men\'s jacket', 'black', 'M', 1, '', 20, 3, 5, '<img src="img/1.png" />',7],
+						['1', 'A1201111', 'Men\'s jacket', 'black', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+						['1', 'A1201111', 'Men\'s jacket', 'white', 'S', 3, '', 20, 3, 5, '<img src="img/1.png" />',7], 
+						['1', 'A1201111', 'Men\'s jacket', 'white', 'M', 2, '', 20, 3, 5, '<img src="img/1.png" />',7], 
+						['1', 'A1201111', 'Men\'s jacket', 'white', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7]
 					];
-			var n = thandle.format(j);
+			var n = thandle.format({data:j,merge:{rowspan:[0,1,2,3,10]}});
+			console.info(n)
 			var trs = "";
-			for(var i in n){
+			for(var i=0;i<n.length;i++){
 				trs +="<tr>";
-				for(var j in n[i].getColumns()){
+				for(var j=0;j<n[i].getColumns().length;j++){
 					trs+='<td rowspan="'+n[i].get(j).rowspan+'">';
 					trs+=n[i].get(j).value;
 					trs+='</td>';

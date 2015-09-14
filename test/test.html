@@ -41,7 +41,7 @@
 						['1', 'A1201111', 'Men\'s jacket', 'white', 'M', 2, '', 20, 3, 5, '<img src="img/1.png" />',7], 
 						['1', 'A1201111', 'Men\'s jacket', 'white', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7]
 					];
-			var n = thandle.format({data:j,merge:{all:true}});
+			var n = thandle.format({data:j,colspan:[0,1,2,3,4,10]});
 			var trs = "";
 			for(var i=0;i<n.length;i++){
 				trs +="<tr>";

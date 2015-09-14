@@ -10,11 +10,9 @@
 	//		}
 	var options = {
 			data: [],
-			mergeObj: {
-				rowspan: [],
-				colspan: [],
-				all: false
-			}
+			rowspan: [],
+			colspan: [],
+			__all: false
 		},
 		contain = function(val) {
 			for (var i = 0; i < this.length; i++) {
@@ -42,13 +40,15 @@
 			}
 		})();
 	Array.prototype.contain = contain;
-	this.colspan = 1;
-	this.rowspan = 1;
-	this.id = uuid();
-	this.value = __value;
-	this.__x = _x > -1 ? _x : Increment(this.id + "x");
-	this.__y = _y > -1 ? _y : Increment(this.id + "y");
-	//列对象克隆
+	var Column = function(_value, _x, _y) {
+			this.colspan = 1;
+			this.rowspan = 1;
+			this.id = uuid();
+			this.value = _value;
+			this.__x = _x > -1 ? _x : Increment(this.id + "x");
+			this.__y = _y > -1 ? _y : Increment(this.id + "y");
+		}
+		//列对象克隆
 	Column.prototype.clone = function() {
 		var copyObj = new Column(this.value, this.__x, this.__y);
 		return copyObj;
@@ -86,8 +86,9 @@
 	w.thandle = {
 		format(_options) {
 			var data = _options.data || _options || options.data,
-				mergeObj = _options.merge || options.mergeObj,
-				all = _options.merge.all || options.merge.all,
+				colspan = _options.colspan || options.colspan,
+				rowspan = _options.rowspan || options.rowspan,
+				all = _options.all || options.__all,
 				row, //行对象
 				col, //列对象
 				prevRow, //第一行数据
@@ -103,7 +104,7 @@
 				for (j = 0; j < data[i].length; j++) {
 					//	4、如果当前列与对比列相同，则在新数据集合中更新rowspan属性
 					//	否则更新对应对比列的对象为最新
-					if (!!prevRow && !!prevRow.get(j) && (all || !!mergeObj.rowspan.contain(j)) && prevRow.get(j).value === data[i][j]) {
+					if (!!prevRow && !!prevRow.get(j) && (all || !!colspan.contain(j)) && prevRow.get(j).value === data[i][j]) {
 						var x = prevRow.get(j).__x, //相同行的列坐标
 							y = prevRow.get(j).__y; //相同行坐标
 						++n[y].find(x).rowspan; //根据x,y坐标找到列对象更新数据

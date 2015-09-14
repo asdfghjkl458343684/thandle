@@ -1,5 +1,5 @@
 # thandle 
-`javascript`
+
 ###### What can it do?
 
   Thandle is a use of native javascript implementation form data procession automerge plug-in, as long as you tell it what columns are needed, it can help you put the original data processing object into a simple json format. Finally, you only need to do a simple traversal can form data merging.

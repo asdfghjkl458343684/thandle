@@ -12,7 +12,8 @@
 			data: [],
 			mergeObj: {
 				rowspan: [],
-				colspan: []
+				colspan: [],
+				all: false
 			}
 		},
 		contain = function(val) {
@@ -41,37 +42,21 @@
 			}
 		})();
 	Array.prototype.contain = contain;
-	//	//深度克隆
-	//	function deepClone(obj) {
-	//
-	//		var _obj = obj instanceof Array ? [] : {};
-	//		if (!!obj) {
-	//			for (var i in obj) {
-	//				if (!!obj && typeof obj === "object")
-	//					_obj[i] = obj[i];
-	//				else
-	//					_obj[i] = deepClone(_obj);
-	//			}
-	//		}
-	//		return _obj;
-	//	}
-	var Column = function(__value, _x, _y) {
-			this.colspan = 1;
-			this.rowspan = 1;
-			this.id = uuid();
-			this.value = __value;
-			this.__x = _x > -1 ? _x : Increment(this.id + "x");
-			this.__y = _y > -1 ? _y : Increment(this.id + "y");
-		}
-		//列对象克隆
+	this.colspan = 1;
+	this.rowspan = 1;
+	this.id = uuid();
+	this.value = __value;
+	this.__x = _x > -1 ? _x : Increment(this.id + "x");
+	this.__y = _y > -1 ? _y : Increment(this.id + "y");
+	//列对象克隆
 	Column.prototype.clone = function() {
 		var copyObj = new Column(this.value, this.__x, this.__y);
 		return copyObj;
 	}
 
 	var Row = function(rownum) {
-		this.columns = [],
-			this.rownum = rownum;
+		this.columns = [];
+		this.rownum = rownum;
 	}
 
 	Row.prototype.push = function(col, __index) { //插入或者添加一列
@@ -102,6 +87,7 @@
 		format(_options) {
 			var data = _options.data || _options || options.data,
 				mergeObj = _options.merge || options.mergeObj,
+				all = _options.merge.all || options.merge.all,
 				row, //行对象
 				col, //列对象
 				prevRow, //第一行数据
@@ -117,7 +103,7 @@
 				for (j = 0; j < data[i].length; j++) {
 					//	4、如果当前列与对比列相同，则在新数据集合中更新rowspan属性
 					//	否则更新对应对比列的对象为最新
-					if (!!prevRow && !!prevRow.get(j) && !!mergeObj.rowspan.contain(j) && prevRow.get(j).value === data[i][j]) {
+					if (!!prevRow && !!prevRow.get(j) && (all || !!mergeObj.rowspan.contain(j)) && prevRow.get(j).value === data[i][j]) {
 						var x = prevRow.get(j).__x, //相同行的列坐标
 							y = prevRow.get(j).__y; //相同行坐标
 						++n[y].find(x).rowspan; //根据x,y坐标找到列对象更新数据

@@ -1,4 +1,104 @@
-(function(w) {
+/**
+ * 表格多列排序plugin
+ * @param {Object} global
+ */
+(function(global) {
+	var _sort = Array.prototype.sort,
+		_unshift = Array.prototype.unshift;
+	config = {
+		compare: "gt"
+	}
+
+	function sortExe(d, rs, __i) {
+
+		var nd = [],
+			__max = rs.length - 1;
+		for (var i = 0; i < d.length; i++) {
+			__sort(d[i], rs[__i]);
+			if (d[i].length === 1 || __max === __i) {
+				sortMerge(nd, d[i]);
+			} else {
+				sortMerge(nd, sortExe(splitArray(d[i], rs[__i]), rs, __i + 1));
+			}
+		}
+		return nd;
+	}
+
+	/**
+	 * 合并数组
+	 * @param {Object} a 主数组
+	 * @param {Object} b 被合并数组
+	 */
+	function sortMerge(a, b) {
+		_unshift.apply(a, b);
+	}
+
+	/**
+	 * 排序
+	 * @param {Object} d
+	 * @param {Object} __i
+	 */
+	function __sort(d, __i) {
+		//		/lt/.test(config.compare) ? _sort.call(d, __ltSort) : _sort.call(d, __gtSort);
+		if (/lt/.test(config.compare)) {	//从大到小排序
+			_sort.call(d, function() {
+				if (arguments[0][__i] < arguments[1][__i])
+					return 1;
+				return -1;
+			});
+		} else {
+			_sort.call(d, function() {		//从小到大排序
+				if (arguments[0][__i] > arguments[1][__i])
+					return 1;
+				return -1;
+			});
+		}
+	}
+
+	function __ltSort() {
+		if (arguments[0][__i] < arguments[1][__i])
+			return 1;
+		return -1;
+	}
+
+	function __gtSort() {
+		if (arguments[0][__i] > arguments[1][__i])
+			return 1;
+		return -1;
+	}
+
+	function splitArray(d, __i) {
+		if (d.length === 1)
+			return [d];
+		var _tem = [],
+			__tem = [];
+		for (var i = 0; i < d.length; i++) {
+			if (!!d[i + 1] && d[i][__i] === d[i + 1][__i]) {
+				__tem.unshift(d[i]);
+				continue;
+			}
+			if (!!d[i - 1] && d[i][__i] === d[i - 1][__i])
+				__tem.unshift(d[i]);
+			else
+				__tem = [d[i]];
+			_tem.unshift(__tem);
+			__tem = [];
+		}
+		return _tem;
+	}
+
+	global.tsort = function() {
+		if (!arguments[0].rowspan || !arguments[0].data || arguments[0].data.length === 0 || arguments[0].rowspan.length === 0)
+			return;
+		var rs = arguments[0].rowspan,
+			d = arguments[0].data
+		config.compare = !!arguments[0].compare ? "lt" : config.compare; //lt小于   gt大于默认gt;
+		__sort(d, rs[0]);
+		var nd = sortExe(splitArray(d, rs[0]), rs, 1);
+		return nd;
+	}
+})(window);
+(function(global) {
 	//		data = [
 	//			[1,2,3,4,7],
 	//			[1,2,3,4,7],
@@ -16,7 +116,7 @@
 		},
 		contain = function(val) {
 			for (var i = 0; i < this.length; i++) {
-				if (val == this[i])
+				if (val === this[i])
 					return true;
 			}
 		},
@@ -39,6 +139,7 @@
 				return ++uuids[uuid];
 			}
 		})();
+
 	Array.prototype.contain = contain;
 	var Column = function(_value, _x, _y) {
 			this.colspan = 1;
@@ -83,18 +184,20 @@
 			copyObj.push(this.columns[i].clone());
 		return copyObj;
 	}
-	w.thandle = {
+
+	global.thandle = {
 		format(_options) {
 			var data = _options.data || _options || options.data,
 				colspan = _options.colspan || options.colspan,
 				rowspan = _options.rowspan || options.rowspan,
-				all = _options.all || options.__all,
 				row, //行对象
 				col, //列对象
 				prevRow, //第一行数据
 				n = [], //格式化以后的数据
 				i, //行索引
 				j; //列索引
+			if (_options.sort === true)
+				data = tsort(arguments[0]);
 			for (i = 0; i < data.length; i++) {
 				//1、使用空的一行记录新纪录行
 				row = new Row(i);
@@ -104,7 +207,7 @@
 				for (j = 0; j < data[i].length; j++) {
 					//	4、如果当前列与对比列相同，则在新数据集合中更新rowspan属性
 					//	否则更新对应对比列的对象为最新
-					if (!!prevRow && !!prevRow.get(j) && (all || !!colspan.contain(j)) && prevRow.get(j).value === data[i][j]) {
+					if (!!prevRow && !!prevRow.get(j) && !!rowspan.contain(j) && prevRow.get(j).value === data[i][j]) {
 						var x = prevRow.get(j).__x, //相同行的列坐标
 							y = prevRow.get(j).__y; //相同行坐标
 						++n[y].find(x).rowspan; //根据x,y坐标找到列对象更新数据

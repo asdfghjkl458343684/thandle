@@ -13,6 +13,7 @@
 `thandle` has two native parameters:
 * data - original data
 * rowspan - need merge rows of columns
+
 ###### Example
 ```javascript
 var j = [

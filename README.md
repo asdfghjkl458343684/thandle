@@ -60,7 +60,7 @@ var j = [
 ##Result
 
 #### sort befot
-[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/before.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png)
+[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/before.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/before.png)
 
 #### sort after
-[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/after.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png)
+[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/after.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/after.png)

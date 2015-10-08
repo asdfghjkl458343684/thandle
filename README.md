@@ -7,21 +7,31 @@
 ###### Usage
 		thandle.formate({
           data:[],
-          colspan:[],
           rowspan:[],
-          all:true
+          sort:true	//need tsort plug-in
         });
+`thandle` has two native parameters:
+* data - original data
+* rowspan - need merge rows of columns
 ###### Example
 ```javascript
 var j = [
-          ['1', 'A1201111', 'Men\'s jacket', 'black', 'S', 2, 1, 20, 3, 5, '<img src="img/1.png" />',7],
-          ['1', 'A1201111', 'Men\'s jacket', 'black', 'M', 1, '', 20, 3, 5, '<img src="img/1.png" />',7],
-          ['1', 'A1201111', 'Men\'s jacket', 'black', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
-          ['1', 'A1201111', 'Men\'s jacket', 'white', 'S', 3, '', 20, 3, 5, '<img src="img/1.png" />',7], 
-          ['1', 'A1201111', 'Men\'s jacket', 'white', 'M', 2, '', 20, 3, 5, '<img src="img/1.png" />',7], 
-          ['1', 'A1201111', 'Men\'s jacket', 'white', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7]
-		];
-   		var n = thandle.format({data:j,colspan:[0,1,2,3,4,10]});
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'M', 1, '', 20, 3, 5, '<img src="img/1.png" />',7],
+        ['1', 'A1201111', 'Men\'s jacket', 'white', 'S', 3, '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'S', 2, 1, 20, 3, 5, '<img src="img/1.png" />',7],
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'white', 'M', 2, '', 20, 3, 5, '<img src="img/1.png" />',7],
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'M', 1, '', 20, 3, 5, '<img src="img/1.png" />',7],
+        ['1', 'A1201111', 'Men\'s jacket', 'white', 'S', 3, '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'S', 2, 1, 20, 3, 5, '<img src="img/1.png" />',7],
+        ['1', 'A1201111', 'Men\'s jacket', 'black', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'red', 'M', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'red', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'red', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'red', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7], 
+        ['1', 'A1201111', 'Men\'s jacket', 'white', 'L', '', '', 20, 3, 5, '<img src="img/1.png" />',7]
+      ];
+   		var n = thandle.format({data:j,rowspan:[0,1,2,3,4,10]});
         var trs = "";
         for(var i=0;i<n.length;i++){
           trs +="<tr>";
@@ -34,4 +44,17 @@ var j = [
         }
         $(".data-table1").append(trs);
 ```
-[![alt text](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png?raw=true)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png?raw=true)
+</br>
+## Update v1.1 
+#### add plug-in `tsort`
+	I gave thandle master feature added a sort plug-in,it can sort for original data.
+  
+##### How tsort sort
+	"tsort" sort rule from `rowspan` property in get columns index,from left to right in sort.so,`rowspan` property in of value order does not affect thandle process data, but affect the sort order.
+ then by thandle proceed at work.final,you need set property sort of value is true,just ok!
+
+## Remove something
+* no colspan property(I think nobodye use colspan feature. Originally, there is no implementation,also)
+* no all property
+
+

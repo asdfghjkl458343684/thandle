@@ -2,7 +2,7 @@
  * 表格多列排序plugin
  * @param {Object} global
  */
-(function(global) {
+var tsort = (function(global) {
 	var _sort = Array.prototype.sort,
 		_unshift = Array.prototype.unshift;
 	config = {
@@ -40,14 +40,14 @@
 	 */
 	function __sort(d, __i) {
 		//		/lt/.test(config.compare) ? _sort.call(d, __ltSort) : _sort.call(d, __gtSort);
-		if (/lt/.test(config.compare)) {	//从大到小排序
+		if (/lt/.test(config.compare)) { //从大到小排序
 			_sort.call(d, function() {
 				if (arguments[0][__i] < arguments[1][__i])
 					return 1;
 				return -1;
 			});
 		} else {
-			_sort.call(d, function() {		//从小到大排序
+			_sort.call(d, function() { //从小到大排序
 				if (arguments[0][__i] > arguments[1][__i])
 					return 1;
 				return -1;
@@ -87,7 +87,7 @@
 		return _tem;
 	}
 
-	global.tsort = function() {
+	return function() {
 		if (!arguments[0].rowspan || !arguments[0].data || arguments[0].data.length === 0 || arguments[0].rowspan.length === 0)
 			return;
 		var rs = arguments[0].rowspan,

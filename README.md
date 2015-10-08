@@ -54,7 +54,13 @@ var j = [
  then by thandle proceed at work.final,you need set property sort of value is true,just ok!
 
 ## Remove something
-* no colspan property(I think nobodye use colspan feature. Originally, there is no implementation,also)
-* no all property
+* v1.0 no colspan property(I think nobodye use colspan feature. Originally, there is no implementation,also)
+* v1.0 no all property
 
+##Result
 
+#### sort befot
+[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/before.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png)
+
+#### sort after
+[![sort before](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/after.png)](https://github.com/asdfghjkl458343684/thandle/blob/master/test/img/preimg_1.png)
